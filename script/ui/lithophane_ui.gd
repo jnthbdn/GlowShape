@@ -73,7 +73,6 @@ var _image_ratio: float = 1.0
 func _ready():
 	set_visible_settings_sections(false)
 	_open_file_image.set_filters(PackedStringArray(["*.png, *.jpg, *.jpeg, *.bmp, *.tga ; Supported images files (*.png, *.jpg, *.jpeg, *.bmp, *.tga)", "*.png ; PNG files", "*.jpg, *.jpeg; JPEG files","*.bmp ; BMP files", "*.tga ; TGA files"]))
-	_export_file.set_filters(PackedStringArray(["*.STL ; STL file (.stl)", "*.step ; STEP file (.stp, .step)"]))
 
 
 #region File Settings
