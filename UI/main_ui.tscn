@@ -1,0 +1,107 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgu8w7c7wbpvc"]
+
+[ext_resource type="Script" path="res://script/ui/main_ui.gd" id="1_jv8iy"]
+[ext_resource type="PackedScene" uid="uid://1ehip2d24lrm" path="res://UI/litho_settings.tscn" id="1_r8l7f"]
+[ext_resource type="PackedScene" uid="uid://biu3b3cv56xb6" path="res://UI/preference_settings.tscn" id="3_l7lfc"]
+[ext_resource type="PackedScene" uid="uid://b3yiy5px26d7u" path="res://3D/main_scene.tscn" id="4_c1352"]
+[ext_resource type="PackedScene" uid="uid://colidho4s0fxc" path="res://UI/overlay.tscn" id="5_ty4t2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom2o"]
+bg_color = Color(0.301961, 0.301961, 0.301961, 1)
+
+[node name="MainUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jv8iy")
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+split_offset = -250
+
+[node name="Panel" type="Panel" parent="HSplitContainer"]
+custom_minimum_size = Vector2(215, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pom2o")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TabBar" type="TabBar" parent="HSplitContainer/Panel/VBoxContainer"]
+layout_mode = 2
+tab_count = 2
+tab_0/title = "Lithophane"
+tab_1/title = "Settings"
+
+[node name="LithophaneUI" parent="HSplitContainer/Panel/VBoxContainer" instance=ExtResource("1_r8l7f")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PreferenceUI" parent="HSplitContainer/Panel/VBoxContainer" instance=ExtResource("3_l7lfc")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HSplitContainer"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+stretch = true
+
+[node name="SubViewport" type="SubViewport" parent="HSplitContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(820, 648)
+render_target_update_mode = 4
+
+[node name="Main3D" parent="HSplitContainer/SubViewportContainer/SubViewport" instance=ExtResource("4_c1352")]
+unique_name_in_owner = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Overlay" parent="." instance=ExtResource("5_ty4t2")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[connection signal="tab_changed" from="HSplitContainer/Panel/VBoxContainer/TabBar" to="." method="_on_tab_bar_tab_changed"]
+[connection signal="candle_base_height_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_candle_base_height_changed"]
+[connection signal="candle_size_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_candle_size_changed"]
+[connection signal="export_file_selected" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_export_file_selected"]
+[connection signal="image_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_changed"]
+[connection signal="image_color_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_color_changed"]
+[connection signal="image_flip_x_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_flip_x_changed"]
+[connection signal="image_flip_y_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_flip_y_changed"]
+[connection signal="image_resolution_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_resolution_changed"]
+[connection signal="image_rotation_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_image_rotation_changed"]
+[connection signal="lithophane_thickness_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_lithophane_thickness_changed"]
+[connection signal="load_file_dialog_closed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_load_file_dialog_closed"]
+[connection signal="load_file_dioalog_opened" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_load_file_dioalog_opened"]
+[connection signal="plate_size_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_plate_size_changed"]
+[connection signal="save_file_dialog_closed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_save_file_dialog_closed"]
+[connection signal="save_file_dialog_opened" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_save_file_dialog_opened"]
+[connection signal="shape_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_shape_changed"]
+[connection signal="show_image_changed" from="HSplitContainer/Panel/VBoxContainer/LithophaneUI" to="." method="_on_lithophane_ui_show_image_changed"]

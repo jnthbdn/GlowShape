@@ -1,0 +1,502 @@
+[gd_scene load_steps=5 format=3 uid="uid://1ehip2d24lrm"]
+
+[ext_resource type="Script" path="res://script/ui/lithophane_ui.gd" id="1_7x3hi"]
+[ext_resource type="ButtonGroup" uid="uid://rwpxblni5qia" path="res://button_group/image_color_group.tres" id="2_j7kg3"]
+[ext_resource type="ButtonGroup" uid="uid://bhjq1hl66xosb" path="res://button_group/rotate_group.tres" id="4_niqlq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_du4ya"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="LitophaneUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7x3hi")
+
+[node name="OpenFileImage" type="FileDialog" parent="."]
+unique_name_in_owner = true
+title = "Open a File"
+initial_position = 4
+size = Vector2i(615, 159)
+ok_button_text = "Ouvrir"
+file_mode = 0
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="ExportFile" type="FileDialog" parent="."]
+unique_name_in_owner = true
+initial_position = 4
+size = Vector2i(615, 159)
+ok_button_text = "Enregistrer"
+access = 2
+show_hidden_files = true
+use_native_dialog = true
+
+[node name="SettingsPanel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_du4ya")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="SettingsPanel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SettingsPanel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="main_settings_label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.705882, 1)
+text = "Main settings"
+
+[node name="main_setting_container" type="MarginContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="LoadFileButton" type="Button" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Select file"
+
+[node name="LabelFilename" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 1
+text = "No file..."
+text_overrun_behavior = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Shape"
+
+[node name="SelectShape" type="OptionButton" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+item_count = 6
+selected = 0
+popup/item_0/text = "Flat"
+popup/item_0/id = 0
+popup/item_1/text = "Candle Holder"
+popup/item_1/id = 1
+popup/item_2/text = "Cylinder"
+popup/item_2/id = 2
+popup/item_2/disabled = true
+popup/item_3/text = "Vase"
+popup/item_3/id = 3
+popup/item_3/disabled = true
+popup/item_4/text = "Inner Curve"
+popup/item_4/id = 4
+popup/item_4/disabled = true
+popup/item_5/text = "Outer Curve"
+popup/item_5/id = 5
+popup/item_5/disabled = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+text = "Image width"
+
+[node name="image_width" type="LineEdit" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "N/A"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Image height"
+
+[node name="image_height" type="LineEdit" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "N/A"
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+shortcut_keys_enabled = false
+middle_mouse_paste_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Show Image"
+
+[node name="check_show_image" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="image_settings_label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.705882, 1)
+text = "Image settings"
+
+[node name="image_settings_container" type="MarginContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container"]
+layout_mode = 2
+
+[node name="resolution" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer"]
+layout_mode = 2
+tooltip_text = "Divisor of the image resolution (1: nb_point = nb pixels, 2: nb_point = nb_pixels / 2, ...)"
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Resolution"
+
+[node name="image_resolution" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/resolution"]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+max_value = 1000.0
+value = 1.0
+
+[node name="color" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/color"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Color"
+
+[node name="normal" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/color"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+button_group = ExtResource("2_j7kg3")
+text = "Positive"
+
+[node name="inverse" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/color"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = ExtResource("2_j7kg3")
+text = "Negative"
+
+[node name="flip" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/flip"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Filp"
+
+[node name="flip_x" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/flip"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Horizontal"
+
+[node name="flip_y" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/flip"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Vertical"
+
+[node name="rotate" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Rotate"
+
+[node name="radio_rot_0" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_pressed = true
+button_group = ExtResource("4_niqlq")
+text = "0°"
+
+[node name="radio_rot_90" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = ExtResource("4_niqlq")
+text = "90°"
+
+[node name="radio_rot_180" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = ExtResource("4_niqlq")
+text = "180°"
+
+[node name="rot_270" type="CheckBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate"]
+layout_mode = 2
+size_flags_horizontal = 3
+button_group = ExtResource("4_niqlq")
+text = "270°"
+
+[node name="HSeparator2" type="HSeparator" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="shape_settings_label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.705882, 1)
+text = "Shape settings"
+
+[node name="shape_settings" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="plate_settings_container" type="MarginContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+tooltip_text = "0 to disable"
+mouse_filter = 1
+text = "Width"
+
+[node name="plateWidth" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+min_value = 1.0
+step = 0.1
+value = 10.0
+allow_greater = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+tooltip_text = "0 to disable"
+mouse_filter = 1
+text = "Height"
+
+[node name="plateHeight" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+min_value = 1.0
+step = 0.1
+value = 10.0
+allow_greater = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="candle_settings_contrainer" type="MarginContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="GridContainer" type="GridContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer"]
+layout_mode = 2
+columns = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+layout_mode = 2
+text = "Height"
+
+[node name="candle_height" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+step = 0.1
+value = 10.0
+allow_greater = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="Label2" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+layout_mode = 2
+text = "Inner diameter"
+
+[node name="candle_diameter" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 1.0
+step = 0.1
+value = 10.0
+allow_greater = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="Label3" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+layout_mode = 2
+text = "Base height"
+
+[node name="candle_base_height" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+min_value = 1.0
+value = 1.0
+allow_greater = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="HSeparator3" type="HSeparator" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="lithophane_settings_label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.705882, 1)
+text = "Lithophane settings"
+
+[node name="lithophane_settings_container" type="MarginContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container"]
+layout_mode = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer3"]
+layout_mode = 2
+tooltip_text = "0 to disable"
+mouse_filter = 1
+text = "Min thickness"
+
+[node name="minThickness" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+min_value = 0.1
+step = 0.1
+value = 0.8
+allow_greater = true
+update_on_text_changed = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+tooltip_text = "0 to disable"
+mouse_filter = 1
+text = "Max thickness"
+
+[node name="maxThickness" type="SpinBox" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer4"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 7
+min_value = 0.1
+step = 0.1
+value = 2.0
+allow_greater = true
+update_on_text_changed = true
+suffix = "mm"
+select_all_on_focus = true
+
+[node name="HSeparator4" type="HSeparator" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Export_label" type="Label" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.705882, 0.705882, 0.705882, 1)
+text = "Export"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="export_stl" type="Button" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Export STL"
+
+[node name="export_step" type="Button" parent="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Export STEP"
+
+[connection signal="canceled" from="OpenFileImage" to="." method="_on_file_dialog_cancel"]
+[connection signal="file_selected" from="OpenFileImage" to="." method="_on_open_file_image_file_selected"]
+[connection signal="canceled" from="ExportFile" to="." method="_on_file_dialog_cancel"]
+[connection signal="file_selected" from="ExportFile" to="." method="_on_export_file_file_selected"]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer/LoadFileButton" to="." method="_on_load_file_button_pressed"]
+[connection signal="item_selected" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer2/SelectShape" to="." method="_on_select_shape_item_selected"]
+[connection signal="toggled" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/main_setting_container/VBoxContainer/HBoxContainer5/check_show_image" to="." method="_on_check_show_image_toggled"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/resolution/image_resolution" to="." method="_on_image_settings_resolution"]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/color/normal" to="." method="_on_color_settings_changed" binds= [false]]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/color/inverse" to="." method="_on_color_settings_changed" binds= [true]]
+[connection signal="toggled" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/flip/flip_x" to="." method="_on_flip_x_settings_changed"]
+[connection signal="toggled" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/flip/flip_y" to="." method="_on_flip_y_settings_changed"]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate/radio_rot_0" to="." method="_on_rotate_settings_changed" binds= [0]]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate/radio_rot_90" to="." method="_on_rotate_settings_changed" binds= [90]]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate/radio_rot_180" to="." method="_on_rotate_settings_changed" binds= [180]]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/image_settings_container/VBoxContainer/rotate/rot_270" to="." method="_on_rotate_settings_changed" binds= [270]]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer3/plateWidth" to="." method="_on_plate_size_width_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/plate_settings_container/VBoxContainer/HBoxContainer4/plateHeight" to="." method="_on_plate_size_height_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer/candle_height" to="." method="_on_candle_height_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer/candle_diameter" to="." method="_on_candle_diameter_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/shape_settings/candle_settings_contrainer/GridContainer/candle_base_height" to="." method="_on_candle_base_height_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer3/minThickness" to="." method="_on_lithophane_thickness_changed"]
+[connection signal="value_changed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/lithophane_settings_container/VBoxContainer/HBoxContainer4/maxThickness" to="." method="_on_lithophane_thickness_changed"]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/export_stl" to="." method="_on_export_button_pressed" binds= ["STL"]]
+[connection signal="pressed" from="SettingsPanel/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/export_step" to="." method="_on_export_button_pressed" binds= ["STEP"]]

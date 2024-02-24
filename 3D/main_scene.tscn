@@ -1,0 +1,98 @@
+[gd_scene load_steps=14 format=3 uid="uid://b3yiy5px26d7u"]
+
+[ext_resource type="Script" path="res://script/main_3d.gd" id="1_ecpe3"]
+[ext_resource type="Script" path="res://script/MovableElement.gd" id="2_spf18"]
+[ext_resource type="Shader" path="res://Shader/flat.gdshader" id="3_3ip6i"]
+[ext_resource type="Shader" path="res://Shader/default_back.gdshader" id="4_2m2d3"]
+[ext_resource type="Shader" path="res://Shader/candle.gdshader" id="5_2v73m"]
+[ext_resource type="Texture2D" uid="uid://i4oxl70cn8yr" path="res://godot.svg" id="6_t42ss"]
+
+[sub_resource type="Environment" id="Environment_mfknv"]
+background_mode = 1
+background_color = Color(0, 0, 0.282353, 1)
+ambient_light_source = 1
+ambient_light_color = Color(1, 1, 1, 1)
+reflected_light_source = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sxd6o"]
+render_priority = 0
+shader = ExtResource("3_3ip6i")
+shader_parameter/mesh_color = null
+shader_parameter/is_image_show = false
+shader_parameter/is_invert = false
+shader_parameter/width_division = 100.0
+shader_parameter/height_division = 100.0
+shader_parameter/min_z = 0.8
+shader_parameter/max_z = 2.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_ia00w"]
+material = SubResource("ShaderMaterial_sxd6o")
+size = Vector2(10, 10)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tthq5"]
+render_priority = 0
+shader = ExtResource("4_2m2d3")
+shader_parameter/mesh_color = null
+
+[sub_resource type="QuadMesh" id="QuadMesh_3nobc"]
+material = SubResource("ShaderMaterial_tthq5")
+size = Vector2(10, 10)
+subdivide_width = 100
+subdivide_depth = 100
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4tqde"]
+render_priority = 0
+shader = ExtResource("5_2v73m")
+shader_parameter/mesh_color = null
+shader_parameter/is_image_show = true
+shader_parameter/is_invert = true
+shader_parameter/width_division = 100.0
+shader_parameter/height_division = 100.0
+shader_parameter/min_z = 1.0
+shader_parameter/max_z = 2.0
+shader_parameter/diameter = 3.183
+shader_parameter/image = ExtResource("6_t42ss")
+
+[sub_resource type="QuadMesh" id="QuadMesh_apxkn"]
+lightmap_size_hint = Vector2i(52, 52)
+material = SubResource("ShaderMaterial_4tqde")
+size = Vector2(10, 10)
+subdivide_width = 100
+subdivide_depth = 100
+
+[node name="Main3D" type="Node3D"]
+script = ExtResource("1_ecpe3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_mfknv")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 20)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)
+light_color = Color(0.956863, 0.956863, 0.956863, 1)
+light_bake_mode = 0
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="MovableElement" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_spf18")
+
+[node name="mesh" type="MeshInstance3D" parent="MovableElement"]
+unique_name_in_owner = true
+transform = Transform3D(0.999997, 0, 0, 0, 1, 0, 0, 0, 0.999997, 0, 0, 0)
+mesh = SubResource("QuadMesh_ia00w")
+
+[node name="back_mesh" type="MeshInstance3D" parent="MovableElement"]
+unique_name_in_owner = true
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+mesh = SubResource("QuadMesh_3nobc")
+
+[node name="test_cylinder" type="MeshInstance3D" parent="MovableElement"]
+visible = false
+mesh = SubResource("QuadMesh_apxkn")
+skeleton = NodePath("../..")

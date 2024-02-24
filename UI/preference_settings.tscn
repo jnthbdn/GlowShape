@@ -1,0 +1,104 @@
+[gd_scene load_steps=3 format=3 uid="uid://biu3b3cv56xb6"]
+
+[ext_resource type="Script" path="res://script/ui/preference_ui.gd" id="1_qykv3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ge12u"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+
+[node name="PreferenceUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qykv3")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ge12u")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/ScrollContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="GridContainer" type="GridContainer" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+columns = 2
+
+[node name="rotation" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Rotation factor"
+
+[node name="rotate_factor" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="translation" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Translation factor"
+
+[node name="translate_factor" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="zoom" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "zoom factor"
+
+[node name="zoom_factor" type="SpinBox" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = 0.1
+max_value = 10.0
+step = 0.1
+value = 1.0
+
+[node name="color" type="Label" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Object color"
+
+[node name="object_color" type="ColorPickerButton" parent="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+color = Color(1, 1, 1, 1)
+edit_alpha = false
+
+[connection signal="value_changed" from="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/rotate_factor" to="." method="_on_rotate_factor_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/translate_factor" to="." method="_on_translate_factor_value_changed"]
+[connection signal="value_changed" from="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/zoom_factor" to="." method="_on_zoom_factor_value_changed"]
+[connection signal="color_changed" from="Panel/ScrollContainer/MarginContainer/VBoxContainer/GridContainer/object_color" to="." method="_on_object_color_value_changed"]

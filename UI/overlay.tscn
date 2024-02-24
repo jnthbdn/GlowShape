@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=3 uid="uid://colidho4s0fxc"]
+
+[ext_resource type="Script" path="res://script/ui/overlay_ui.gd" id="1_tj6f8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0vd2e"]
+bg_color = Color(0.392157, 0.392157, 0.392157, 0.631373)
+
+[sub_resource type="SystemFont" id="SystemFont_jg30e"]
+font_names = PackedStringArray("DejaVu Sans Mono")
+font_italic = true
+subpixel_positioning = 0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jahly"]
+font = SubResource("SystemFont_jg30e")
+font_size = 12
+font_color = Color(0.764706, 0.764706, 0.764706, 1)
+
+[node name="Overlay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tj6f8")
+
+[node name="overlay" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_0vd2e")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="overlay"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.5
+offset_top = -27.0
+offset_right = 50.5
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="overlay_text" type="Label" parent="overlay/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Please wait..."
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="overlay/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ProgressBar" type="ProgressBar" parent="overlay/VBoxContainer/MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+
+[node name="text_progress" type="Label" parent="overlay/VBoxContainer/MarginContainer/ProgressBar"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "01234 / 98764"
+label_settings = SubResource("LabelSettings_jahly")
+horizontal_alignment = 1
+vertical_alignment = 2
