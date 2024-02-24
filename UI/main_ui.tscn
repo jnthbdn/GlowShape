@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://script/ui/main_ui.gd" id="1_jv8iy"]
 [ext_resource type="PackedScene" uid="uid://1ehip2d24lrm" path="res://UI/litho_settings.tscn" id="1_r8l7f"]
 [ext_resource type="PackedScene" uid="uid://biu3b3cv56xb6" path="res://UI/preference_settings.tscn" id="3_l7lfc"]
-[ext_resource type="PackedScene" uid="uid://b3yiy5px26d7u" path="res://3D/main_scene.tscn" id="4_c1352"]
+[ext_resource type="PackedScene" uid="uid://b3yiy5px26d7u" path="res://3D/main_3D.tscn" id="4_c1352"]
 [ext_resource type="PackedScene" uid="uid://colidho4s0fxc" path="res://UI/overlay.tscn" id="5_ty4t2"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pom2o"]
